@@ -4,57 +4,58 @@
 import { useForm } from "react-hook-form";
 import { authService } from "@/services/auth";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Link from "next/link";
+import { SubmitButton, TextInput } from "@/components";
 
 interface LoginFormData {
   email: string;
   password: string;
 }
 
-// import { useState } from "react";
-import Link from "next/link";
-import { SubmitButton, TextInput } from "@/components";
-
 export default function LoginForm() {
   // teste deepseek
-  const { register, handleSubmit } = useForm<LoginFormData>();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<LoginFormData>();
   const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onSubmit = async (data: LoginFormData) => {
     try {
-      const response = await authService.login(data);
+      const response = await authService.login({
+        email: data.email,
+        password: data.password,
+      });
+
       console.log("Login bem-sucedido: ", response);
       router.push("/"); // redirect to homepage when login is ok
-    } catch (error) {
+    } catch (error: any) {
       console.log("Erro no login: ", error);
+      setErrorMessage(error.response?.data?.message || "Erro ao fazer login. Tente Novamente.");
     }
   };
 
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
-  // const handleSubmit = async (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   // Chamada para a API de autenticação
-  //   console.log({ email, password });
-  // };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <TextInput
-        {...register("email")}
+        {...register("email", { required: "E-mail é obrigatório",
+          pattern:{
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "E-mail inválido",
+          },
+        })}
         name="email"
         label="E-mail:"
         inputMode="email"
         placeholder="E-mail"
-        required={true}
+        error={errors.email?.message}
       />
       <TextInput
-        {...register("password")}
+        {...register("password", { required: "Senha é obrigatório"})}
         name="password"
         label="Senha:"
         type="password"
         placeholder="Senha"
-        required={true}
+        error={errors.password?.message}
       />
       <Link
         href="/reset-password"
@@ -70,35 +71,5 @@ export default function LoginForm() {
         </Link>
       </div>
     </form>
-    // <form onSubmit={handleSubmit} className="space-y-4">
-    //   <div>
-    //     <label className="block text-sm font-medium text-gray-700">
-    //       E-mail:
-    //     </label>
-    //     <input
-    //       type="email"
-    //       value={email}
-    //       onChange={(e) => setEmail(e.target.value)}
-    //       className="mt-1 w-full rounded-md border-gray-300 p-2 focus:border-indigo-500 focus:ring-indigo-500"
-    //       required
-    //     />
-    //   </div>
-    //   <div>
-    //     <label className="block text-sm font-medium text-gray-700">Senha</label>
-    //     <input
-    //       type="password"
-    //       value={password}
-    //       onChange={(e) => setPassword(e.target.value)}
-    //       className="mt-1 w-full rounded-md border-gray-300 p-2 focus:border-indigo-500 focus:ring-indigo-500"
-    //       required
-    //     />
-    //   </div>
-    //   <button
-    //     type="submit"
-    //     className="w-full rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
-    //   >
-    //     Entrar
-    //   </button>
-    // </form>
   );
 }

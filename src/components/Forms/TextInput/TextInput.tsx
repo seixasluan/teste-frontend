@@ -24,7 +24,7 @@ export default function TextInput({
         name={name}
         placeholder={placeholder}
         className={cn(
-          "w-full my-2 rounded-md border-2 border-transparent bg-slate-100 px-2 py-2 text-base text-black focus:outline-none focus:ring-0",
+          "w-full my-2 rounded-md border-2 border-transparent bg-slate-100 px-2 py-2 text-base text-stone-600 focus:outline-none focus:ring-0",
           {
             "border-red-500": !!error,
           }
