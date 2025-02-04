@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
+import Link from "next/link";
 
 export const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
@@ -10,21 +11,24 @@ export const Navbar = () => {
       <h1 className="text-2xl font-bold text-indigo-600">SeusEventos</h1>
       {isAuthenticated ? (
         <div>
-          <button onClick={logout} className="text-indigo-600 hover:underline mr-4">
+          <button
+            onClick={logout}
+            className="text-indigo-600 hover:underline mr-4"
+          >
             Logout
           </button>
         </div>
       ) : (
         <div>
-          <a href="/login" className="text-indigo-600 hover:underline mr-4">
+          <Link href="/login" className="text-indigo-600 hover:underline mr-4">
             Login
-          </a>
-          <a
+          </Link>
+          <Link
             href="/signup"
             className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700"
           >
             Criar Conta
-          </a>
+          </Link>
         </div>
       )}
     </header>

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { SubmitButton, TextInput } from "@/components";
 import Link from "next/link";
 import { useState } from "react";
+import { FaSpinner } from "react-icons/fa";
 
 interface SignUpFormData {
   email: string;
@@ -56,6 +57,7 @@ export default function SignUpForm() {
         type="text"
         placeholder="Nome"
         error={errors.name?.message}
+        disabled={loading}
       />
 
       <TextInput
@@ -70,6 +72,7 @@ export default function SignUpForm() {
         inputMode="email"
         placeholder="E-mail"
         error={errors.email?.message}
+        disabled={loading}
       />
 
       <TextInput
@@ -78,6 +81,7 @@ export default function SignUpForm() {
         inputMode="tel"
         placeholder="Telefone"
         error={errors.phone?.message}
+        disabled={loading}
       />
 
       <TextInput
@@ -92,6 +96,7 @@ export default function SignUpForm() {
         type="password"
         placeholder="Senha"
         error={errors.password?.message}
+        disabled={loading}
       />
 
       <TextInput
@@ -104,6 +109,7 @@ export default function SignUpForm() {
         type="password"
         placeholder="Confirme sua senha"
         error={errors.passwordConfirmation?.message}
+        disabled={loading}
       />
 
       {errorMessage && (
@@ -112,9 +118,18 @@ export default function SignUpForm() {
 
       <div className="flex justify-between items-center">
         <SubmitButton
-          label={loading ? "Criando conta..." : "Criar conta"}
+          label={
+            loading ? (
+              <>
+                <FaSpinner className="animate-spin text-white" />
+              </>
+            ) : (
+              "Criar conta"
+            )
+          }
           disabled={loading}
         />
+
         <Link href="/login" className="text-indigo-600 hover:text-indigo-900">
           Já possui uma conta?
         </Link>

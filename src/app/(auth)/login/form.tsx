@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import { SubmitButton, TextInput } from "@/components";
+import { FaSpinner } from "react-icons/fa";
 
 interface LoginFormData {
   email: string;
@@ -30,13 +31,6 @@ export default function LoginForm() {
     try {
       await login(data.email, data.password);
       router.push("/");
-      // const response = await authService.login({
-      //   email: data.email,
-      //   password: data.password,
-      // });
-
-      // console.log("Login bem-sucedido: ", response);
-      // router.push("/"); // redirect to homepage when login is ok
     } catch (error) {
       console.log("Login Error: ", error);
       setErrorMessage("Erro ao fazer login. Verifique suas credenciais.");
@@ -60,6 +54,7 @@ export default function LoginForm() {
         inputMode="email"
         placeholder="E-mail"
         error={errors.email?.message}
+        disabled={loading}
       />
       <TextInput
         {...register("password", { required: "Senha é obrigatório" })}
@@ -68,19 +63,32 @@ export default function LoginForm() {
         type="password"
         placeholder="Senha"
         error={errors.password?.message}
+        disabled={loading}
       />
-      <Link
+      {/* <Link
         href="/reset-password"
         className="text-indigo-600 hover:text-indigo-900"
       >
         Esqueceu a senha?
-      </Link>
+      </Link> */}
+      {errorMessage && (
+        <div className="text-red-500 text-sm">{errorMessage}</div>
+      )}
 
       <div className="flex justify-between items-center mt-4">
         <SubmitButton
-          label={loading ? "Entrando..." : "Entrar"}
+          label={
+            loading ? (
+              <>
+                <FaSpinner className="animate-spin text-white" />
+              </>
+            ) : (
+              "Entrar"
+            )
+          }
           disabled={loading}
         />
+
         <Link href="/signup" className="text-indigo-600 hover:text-indigo-900">
           Não possui uma conta?
         </Link>

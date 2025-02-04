@@ -1,7 +1,7 @@
 import { cn } from "@/helpers/cn";
 
 export type SubmitButtonProps = React.ComponentProps<"button"> & {
-  label?: string | null;
+  label?: React.ReactNode;
 };
 export default function SubmitButton({
   label,
