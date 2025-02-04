@@ -21,5 +21,4 @@ export default function SubmitButton({
       {label || children}
     </button>
   );
-  
 }

@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Toaster } from "sonner";
 import type { Metadata } from "next";
 import { AuthProvider } from "@/context/AuthContext";
 
@@ -13,12 +14,17 @@ export default function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body>
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-          <AuthProvider>{children}</AuthProvider>
-        </div>
-      </body>
-    </html>
+    <AuthProvider>
+      <html>
+        <body>
+          <div className="min-h-screen bg-gray-50 flex flex-col">
+            <AuthProvider>
+              {children}
+              <Toaster position="top-right" offset={80} richColors />
+            </AuthProvider>
+          </div>
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

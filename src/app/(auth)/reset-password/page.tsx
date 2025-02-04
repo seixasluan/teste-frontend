@@ -7,7 +7,7 @@ export default function ResetPassword() {
         <h1 className="mb-4 text-center text-2xl font-bold text-indigo-700">
           Recuperar Senha
         </h1>
-        <ResetPasswordForm/>
+        <ResetPasswordForm />
       </div>
     </div>
   );
