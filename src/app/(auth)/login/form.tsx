@@ -7,6 +7,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { SubmitButton, TextInput } from "@/components";
 import { FaSpinner } from "react-icons/fa";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 interface LoginFormData {
   email: string;
@@ -23,6 +24,7 @@ export default function LoginForm() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (data: LoginFormData) => {
     setLoading(true);
@@ -58,16 +60,33 @@ export default function LoginForm() {
           disabled={loading}
           className={loading ? "bg-gray-200 cursor-not-allowed" : ""}
         />
-        <TextInput
-          {...register("password", { required: "Senha é obrigatório" })}
-          name="password"
-          label="Senha:"
-          type="password"
-          placeholder="Senha"
-          error={errors.password?.message}
-          disabled={loading}
-          className={loading ? "bg-gray-200 cursor-not-allowed" : ""}
-        />
+        <div className="relative">
+          <TextInput
+            {...register("password", { required: "Senha é obrigatória" })}
+            name="password"
+            label="Senha:"
+            type={showPassword ? "text" : "password"}
+            placeholder="Senha"
+            error={errors.password?.message}
+            disabled={loading}
+            className={`pr-10 ${
+              loading ? "bg-gray-200 cursor-not-allowed" : ""
+            }`} // Adicionado pr-10 para dar espaço ao ícone
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+            disabled={loading}
+            style={{ top: "calc(50% + 0.7rem)" }} // Ajuste fino para centralizar verticalmente
+          >
+            {showPassword ? (
+              <IoEyeOffOutline size={20} />
+            ) : (
+              <IoEyeOutline size={20} />
+            )}
+          </button>
+        </div>
 
         {errorMessage && (
           <div className="text-red-500 text-sm">{errorMessage}</div>
@@ -104,7 +123,3 @@ export default function LoginForm() {
     </form>
   );
 }
-
-/*
- * Desabilitar inputs visuavelmente para melhoria da UI/UX
- */

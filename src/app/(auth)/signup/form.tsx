@@ -7,6 +7,7 @@ import { SubmitButton, TextInput } from "@/components";
 import Link from "next/link";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 interface SignUpFormData {
   email: string;
@@ -27,6 +28,9 @@ export default function SignUpForm() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirmation, setShowPasswordConfirmation] =
+    useState(false);
 
   const onSubmit = async (data: SignUpFormData) => {
     // Verifica se as senhas coincidem
@@ -88,35 +92,69 @@ export default function SignUpForm() {
           className={loading ? "bg-gray-200 cursor-not-allowed" : ""}
         />
 
-        <TextInput
-          {...register("password", {
-            required: "Senha é obrigatória",
-            minLength: {
-              value: 8,
-              message: "A senha deve ter pelo menos 8 caracteres",
-            },
-          })}
-          label="Senha:"
-          type="password"
-          placeholder="Senha"
-          error={errors.password?.message}
-          disabled={loading}
-          className={loading ? "bg-gray-200 cursor-not-allowed" : ""}
-        />
+        <div className="relative">
+          <TextInput
+            {...register("password", {
+              required: "Senha é obrigatória",
+              minLength: {
+                value: 8,
+                message: "A senha deve ter pelo menos 8 caracteres",
+              },
+            })}
+            label="Senha:"
+            type={showPassword ? "text" : "password"}
+            placeholder="Senha"
+            error={errors.password?.message}
+            disabled={loading}
+            className={`pr-10 ${
+              loading ? "bg-gray-200 cursor-not-allowed" : ""
+            }`}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+            disabled={loading}
+            style={{ top: "calc(50% + 0.7rem)" }}
+          >
+            {showPassword ? (
+              <IoEyeOffOutline size={20} />
+            ) : (
+              <IoEyeOutline size={20} />
+            )}
+          </button>
+        </div>
 
-        <TextInput
-          {...register("passwordConfirmation", {
-            required: "Confirme sua senha",
-            validate: (value) =>
-              value === watch("password") || "As senhas não coincidem",
-          })}
-          label="Confirmação de senha:"
-          type="password"
-          placeholder="Confirme sua senha"
-          error={errors.passwordConfirmation?.message}
-          disabled={loading}
-          className={loading ? "bg-gray-200 cursor-not-allowed" : ""}
-        />
+        <div className="relative">
+          <TextInput
+            {...register("passwordConfirmation", {
+              required: "Confirme sua senha",
+              validate: (value) =>
+                value === watch("password") || "As senhas não coincidem",
+            })}
+            label="Confirmação de senha:"
+            type={showPasswordConfirmation ? "text" : "password"}
+            placeholder="Confirme sua senha"
+            error={errors.passwordConfirmation?.message}
+            disabled={loading}
+            className={`pr-10 ${
+              loading ? "bg-gray-200 cursor-not-allowed" : ""
+            }`}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPasswordConfirmation((prev) => !prev)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+            disabled={loading}
+            style={{ top: "calc(50% + 0.7rem)" }}
+          >
+            {showPasswordConfirmation ? (
+              <IoEyeOffOutline size={20} />
+            ) : (
+              <IoEyeOutline size={20} />
+            )}
+          </button>
+        </div>
 
         {errorMessage && (
           <div className="text-red-500 text-sm">{errorMessage}</div>

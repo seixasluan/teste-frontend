@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Teste Frontend
 
-## Getting Started
+Este projeto é uma aplicação frontend desenvolvida para teste técnico e avaliação de habilidades em desenvolvimento frontend com Next.js e consumo de APIs.
 
-First, run the development server:
+## Índice
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Descrição](#descrição)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Instalação e Execução](#instalação-e-execução)
+- [Funcionalidades](#funcionalidades)
+- [Contribuição](#contribuição)
+- [Licença](#licença)
+- [Autor](#autor)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Descrição
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Este projeto consiste em um sistema de autenticação de usuários, onde é possível realizar cadastro, login e autenticação utilizando uma API externa. Ele foi desenvolvido como parte de um teste técnico para avaliação de habilidades em frontend com Next.js.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tecnologias Utilizadas
 
-## Learn More
+- [Next.js](https://nextjs.org/) - Framework React para desenvolvimento de aplicações web.
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS para estilização.
+- [TypeScript](https://www.typescriptlang.org/) - Superset do JavaScript que adiciona tipagem estática.
+- [ESLint](https://eslint.org/) - Ferramenta para análise de código estático.
 
-To learn more about Next.js, take a look at the following resources:
+## Instalação e Execução
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Siga os passos abaixo para configurar e executar o projeto localmente:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clone o repositório:**
 
-## Deploy on Vercel
+   ```bash
+   git clone https://github.com/seixasluan/teste-frontend.git
+   cd teste-frontend
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Instale as dependências:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm install
+   # ou
+   yarn install
+   ```
+
+3. **Configuração de variáveis de ambiente:**
+
+   ```bash
+   NEXT_PUBLIC_API_BASE_URL=https://api-staging.seuseventos.com.br/v1/
+   ```
+
+4. **Execute o servidor de desenvolvimento:**
+
+   ```bash
+   npm run dev
+   # ou
+   yarn dev
+   ```
+
+   O aplicativo estará disponível em [http://localhost:3000](http://localhost:3000).
+
+## Funcionalidades
+
+- Cadastro de usuários com validação de dados;
+- Autenticação de usuários via API externa;
+- Login seguro com persistência de sessão;
+- Interface responsiva e estilizada com Tailwind CSS
+
+## Autor
+
+Desenvolvido por [Luan Seixas](https://github.com/seixasluan). Entre em contato!
