@@ -8,8 +8,6 @@ Este projeto é uma aplicação frontend desenvolvida para teste técnico e aval
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Instalação e Execução](#instalação-e-execução)
 - [Funcionalidades](#funcionalidades)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
 - [Autor](#autor)
 
 ## Descrição
