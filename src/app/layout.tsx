@@ -20,7 +20,7 @@ export default function HomeLayout({
           <div className="min-h-screen bg-gray-50 flex flex-col">
             <AuthProvider>
               {children}
-              <Toaster position="top-right" offset={80} richColors />
+              <Toaster position="top-right" offset={65} richColors />
             </AuthProvider>
           </div>
         </body>

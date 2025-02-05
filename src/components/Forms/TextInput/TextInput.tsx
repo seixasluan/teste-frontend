@@ -15,7 +15,8 @@ export default function TextInput({
   ...props
 }: TextInputProps) {
   return (
-    <div className={cn("my-4", className)}>
+    // <div className={cn("my-4", className)}>
+    <div className="my-4">
       {label ? (
         <label className="text-black font-bold my-2">{label}</label>
       ) : null}
@@ -25,6 +26,7 @@ export default function TextInput({
         placeholder={placeholder}
         className={cn(
           "w-full my-2 rounded-md border-2 border-transparent bg-slate-100 px-2 py-2 text-base text-stone-600 focus:outline-none focus:ring-0",
+          className,
           {
             "border-red-500": !!error,
           }

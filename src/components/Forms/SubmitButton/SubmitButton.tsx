@@ -13,7 +13,7 @@ export default function SubmitButton({
     <button
       type="submit"
       className={cn(
-        "bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 font-semibold",
+        "px-4 py-2 rounded-md font-semibold",
         className
       )}
       {...props}
