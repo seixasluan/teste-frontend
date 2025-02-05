@@ -33,7 +33,6 @@ export default function SignUpForm() {
     useState(false);
 
   const onSubmit = async (data: SignUpFormData) => {
-    // Verifica se as senhas coincidem
     if (data.password !== data.passwordConfirmation) {
       setErrorMessage("As senhas não coincidem.");
       return;

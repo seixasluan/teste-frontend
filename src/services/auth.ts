@@ -19,7 +19,7 @@ export const authService = {
   },
 
   async login(data: LoginData) {
-    const response = await api.post("/accounts/signin", data); // verificar endpoint correto na "doc" da API
+    const response = await api.post("/accounts/signin", data);
     return response.data;
-  }
+  },
 };

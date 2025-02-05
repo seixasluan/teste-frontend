@@ -15,7 +15,6 @@ export default function TextInput({
   ...props
 }: TextInputProps) {
   return (
-    // <div className={cn("my-4", className)}>
     <div className="my-4">
       {label ? (
         <label className="text-black font-bold my-2">{label}</label>

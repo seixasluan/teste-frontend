@@ -71,14 +71,14 @@ export default function LoginForm() {
             disabled={loading}
             className={`pr-10 ${
               loading ? "bg-gray-200 cursor-not-allowed" : ""
-            }`} // Adicionado pr-10 para dar espaço ao ícone
+            }`}
           />
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
             disabled={loading}
-            style={{ top: "calc(50% + 0.7rem)" }} // Ajuste fino para centralizar verticalmente
+            style={{ top: "calc(50% + 0.7rem)" }}
           >
             {showPassword ? (
               <IoEyeOffOutline size={20} />
